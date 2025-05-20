@@ -60,3 +60,113 @@ body{
     bottom: 0;
     left: 0;
 }
+
+.container-form{
+    display: flex;
+    justify-content: center;
+    margin: 10vh 0;
+}
+
+#animes, #characters{
+    display: none;
+}
+#animes + label, #characters + label{
+    align-content: center;
+    text-align: center;
+    font-family: Bebas Neue;
+    font-size: 40px;
+    color: #ffffff;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 400px;
+    height: 130px;
+    filter: brightness(0.9) contrast(1.1) hue-rotate(-10deg) saturate(1.5);
+    transition: transform 0.3s ease;
+    margin-bottom: 3vh;
+}
+#animes + label{
+    background-image: url("/img/animes.png");
+    margin-right: 1.5vw;
+}
+#characters + label{
+    background-image: url("/img/characters.png");
+}
+#animes + label:hover, #characters + label:hover{
+    transform: scale(1.1);
+}
+#animes:checked + label, #characters:checked + label{
+    border: 5px solid #e2733c;
+}
+
+label[for="database"], label[for="username"], label[for="list"]{
+    font-family: Bebas Neue;
+    font-size: 30px;
+    color: #383838;
+}
+#myanimelist + label, #anilist + label, #all + label, #watching + label, #completed + label, #paused + label, #dropped + label, #planning + label{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: coral;
+}
+#username{
+    background-color: coral;
+    color: #ffffff;
+    border: none;
+    border-radius: .25rem;
+    width: 100%;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 11px;
+}
+#username::placeholder{
+    color: #fcfcfc;
+}
+#username:focus{
+    border: 2px solid #ff5423;
+    outline: none;
+}
+input[type="radio"], input[type="checkbox"]{
+    accent-color: #383838;
+    transform: scale(1.5);
+    margin-right: .25rem;
+}
+
+#myanimelist + label, #all + label, #watching + label, #completed + label, #paused + label, #dropped + label{
+    margin-right: 1.5vw;
+}
+form div:nth-of-type(2), #username{
+    margin-bottom: 1.5vh;
+}
+form div:nth-of-type(3){
+    margin-bottom: 3vh;
+}
+
+.generate-button{
+    display: flex;
+    justify-content: center;
+}
+
+.generate-button button{
+    font-family: Bebas Neue;
+    font-size: 30px;
+    background-color: coral; 
+    color: #ffffff;
+    border: none;
+    border-radius: .25rem;
+    box-shadow: 0px 0px 12px -2px rgba(0,0,0,0.5); 
+    transition: color 0.3s ease, transform 0.2s ease;
+    padding: 8px 62px;
+}
+.generate-button button span{
+    color: #383838;
+    transition: color 0.3s ease;
+}
+.generate-button button:hover{
+    color: #383838;
+    transform: scale(1.03);
+}
+.generate-button button:hover span{
+    color: #ffffff;
+}
