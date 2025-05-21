@@ -26,19 +26,12 @@
     </div>
     
     <div class="container-form">
-        <form action="">
+        <form action="POST">
             <div>
-                <input type="radio" id="animes" name="mode" value="Animes">
+                <input type="radio" id="animes" name="mode" value="1">
                 <label for="animes">Animes</label>
-                <input type="radio" id="characters" name="mode" value="Characters">
+                <input type="radio" id="characters" name="mode" value="2">
                 <label for="characters">Characters</label>
-            </div>
-            <div>
-                <label for="database">Database</label><br>
-                <input type="radio" id="myanimelist" name="database" value="MyAnimeList">
-                <label for="myanimelist">MyAnimeList</label>
-                <input type="radio" id="anilist" name="database" value="Anilist">
-                <label for="anilist">Anilist</label>
             </div>
             <label for="username">Username</label><br>
             <input type="text" placeholder="e.g., Chaengie" id="username" name="username"><br>
@@ -54,7 +47,7 @@
                 <label for="paused">Paused</label>
                 <input type="checkbox" id="dropped" name="list" value="5">
                 <label for="dropped">Dropped</label>
-                <input type="checkbox" id="planning" name="list" value="5">
+                <input type="checkbox" id="planning" name="list" value="6">
                 <label for="planning">Planning</label>
             </div>
             <div class="generate-button">

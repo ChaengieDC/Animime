@@ -66,6 +66,10 @@ body{
     justify-content: center;
     margin: 10vh 0;
 }
+/* Margin sous ANIMES/CHARACTERS + LIST-CHECKBOXES */
+form div{
+    margin-bottom: 3vh;
+}
 
 #animes, #characters{
     display: none;
@@ -84,7 +88,6 @@ body{
     height: 130px;
     filter: brightness(0.9) contrast(1.1) hue-rotate(-10deg) saturate(1.5);
     transition: transform 0.3s ease;
-    margin-bottom: 3vh;
 }
 #animes + label{
     background-image: url("/img/animes.png");
@@ -100,25 +103,27 @@ body{
     border: 5px solid #e2733c;
 }
 
-label[for="database"], label[for="username"], label[for="list"]{
+label[for="username"], label[for="list"]{
     font-family: Bebas Neue;
     font-size: 30px;
     color: #383838;
 }
-#myanimelist + label, #anilist + label, #all + label, #watching + label, #completed + label, #paused + label, #dropped + label, #planning + label{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    color: coral;
-}
+/* USERNAME */
 #username{
     background-color: coral;
     color: #ffffff;
     border: none;
     border-radius: .25rem;
+    caret-color: #ffffff; /* Couleur du curseur */
     width: 100%;
     padding-top: 1vh;
     padding-bottom: 1vh;
     padding-left: 11px;
+    margin-bottom: 1.5vh;
+}
+#username:-webkit-autofill{
+    box-shadow: 0 0 0 1000px coral inset !important;
+    -webkit-text-fill-color: #ffffff !important;
 }
 #username::placeholder{
     color: #fcfcfc;
@@ -127,20 +132,21 @@ label[for="database"], label[for="username"], label[for="list"]{
     border: 2px solid #ff5423;
     outline: none;
 }
-input[type="radio"], input[type="checkbox"]{
+/* LIST */
+input[type="checkbox"]{
     accent-color: #383838;
-    transform: scale(1.5);
-    margin-right: .25rem;
+    vertical-align: middle;
+    zoom: 1.5;
+    margin-top: -2px;
 }
-
-#myanimelist + label, #all + label, #watching + label, #completed + label, #paused + label, #dropped + label{
+input[type="checkbox"] + label{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: coral;
+    vertical-align: middle;
+}
+input[type="checkbox"] + label:not(:last-child){
     margin-right: 1.5vw;
-}
-form div:nth-of-type(2), #username{
-    margin-bottom: 1.5vh;
-}
-form div:nth-of-type(3){
-    margin-bottom: 3vh;
 }
 
 .generate-button{
