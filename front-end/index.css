@@ -61,25 +61,55 @@ body{
     left: 0;
 }
 
+/* Ligne de séparation commune */
+hr{
+    border-top: 3px solid coral !important;
+    width: 100%;
+    opacity: 100% !important;
+}
+
+.select-div{
+    display: grid;
+    justify-content: center;
+    margin-top: 10vh;
+}
+
+.select-text{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    line-height: 0.8;
+    margin: 0;
+}
+.select-text span{
+    color: #e2733c;
+}
+.select-div hr{
+    margin-bottom: 3vh !important;
+}
+
 .container-form{
     display: flex;
     justify-content: center;
-    margin: 10vh 0;
 }
-/* Margin sous ANIMES/CHARACTERS + LIST-CHECKBOXES */
-form div{
-    margin-bottom: 3vh;
+form{
+    width: 50%;
 }
 
+.mode-options{
+    display: flex;
+    gap: 2vw;
+    margin-bottom: 3vh;
+}
 #animes, #characters{
     display: none;
 }
 #animes + label, #characters + label{
+    flex: 0 1 50%;
     align-content: center;
-    text-align: center;
     font-family: Bebas Neue;
     font-size: 40px;
     color: #ffffff;
+    text-align: center;
     background-position: center;
     background-size: cover;
     border-radius: 10px;
@@ -91,7 +121,6 @@ form div{
 }
 #animes + label{
     background-image: url("/img/animes.png");
-    margin-right: 1.5vw;
 }
 #characters + label{
     background-image: url("/img/characters.png");
@@ -103,36 +132,96 @@ form div{
     border: 5px solid #e2733c;
 }
 
-label[for="username"], label[for="list"]{
+label[for="genre"], label[for="username"], label[for="list"]{
     font-family: Bebas Neue;
     font-size: 30px;
+    line-height: 0.8;
     color: #383838;
 }
-/* USERNAME */
+
+.genre-wrapper{
+    position: relative;
+    width: 100%;
+    margin-bottom: 1.5vh;
+}
+
+.genre-toggle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    background-color: coral;
+    color: #ffffff;
+    border: none;
+    border-radius: .25rem;
+    cursor: pointer;
+    padding: 1vh 11px;
+}
+
+.genre-options{
+    display: none;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 1vh;
+}
+
+.genre-options button{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: coral;
+    border: 2px solid coral;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+    padding: 6px 12px;
+}
+.genre-options button:hover{
+    background-color: coral;
+    color: white;
+}
+
+/* Zone de séparation */
+form hr:nth-of-type(1){
+    margin-top: 3vh;
+}
+.select-text small{
+    font-style: italic;
+    font-size: 17px;
+}
+.select-text small span{
+    color: #e2733c;
+}
+form hr:nth-of-type(2){
+    margin-bottom: 3vh;
+}
+
 #username{
+    font-family: Arial, Helvetica, sans-serif;
     background-color: coral;
     color: #ffffff;
     border: none;
     border-radius: .25rem;
     caret-color: #ffffff; /* Couleur du curseur */
     width: 100%;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-    padding-left: 11px;
-    margin-bottom: 1.5vh;
+    padding: 1vh 11px;
+    margin-bottom: 2vh;
 }
 #username:-webkit-autofill{
     box-shadow: 0 0 0 1000px coral inset !important;
     -webkit-text-fill-color: #ffffff !important;
 }
-#username::placeholder{
-    color: #fcfcfc;
-}
 #username:focus{
     border: 2px solid #ff5423;
     outline: none;
 }
-/* LIST */
+#username::placeholder{
+    color: #fcfcfc;
+}
+
+.list-options{
+    line-height: 1.1;
+}
 input[type="checkbox"]{
     accent-color: #383838;
     vertical-align: middle;
@@ -149,9 +238,23 @@ input[type="checkbox"] + label:not(:last-child){
     margin-right: 1.5vw;
 }
 
+.error-text{
+    display: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+    font-size: 17px;
+    font-weight: bold;
+    color: #ef4444;
+    text-align: center;
+    line-height: 0.8;
+    margin-bottom: 1vh;
+}
+
 .generate-button{
     display: flex;
     justify-content: center;
+    margin-top: 3vh;
+    margin-bottom: 10vh;
 }
 
 .generate-button button{

@@ -25,18 +25,60 @@
         </svg>
     </div>
     
+    <div class="select-div">
+        <h1 class="select-text">SELECT a <span>GAME</span> MODE!</h1>
+        <hr>
+    </div>
+
     <div class="container-form">
         <form action="POST">
-            <div>
+            <div class="mode-options">
                 <input type="radio" id="animes" name="mode" value="1">
                 <label for="animes">Animes</label>
                 <input type="radio" id="characters" name="mode" value="2">
                 <label for="characters">Characters</label>
             </div>
+
+            <label for="genre">Genre</label><br>
+            <div class="genre-wrapper">
+                <div class="genre-toggle">
+                    <span class="genre-label">Any</span>
+                    <span>▼</span>
+                </div>
+                <div class="genre-options">
+                    <button type="button" data-value="">Any</button>
+                    <button type="button" data-value="Action">Action</button>
+                    <button type="button" data-value="Adventure">Adventure</button>
+                    <button type="button" data-value="Comedy">Comedy</button>
+                    <button type="button" data-value="Drama">Drama</button>
+                    <button type="button" data-value="Ecchi">Ecchi</button>
+                    <button type="button" data-value="Fantasy">Fantasy</button>
+                    <button type="button" data-value="Horror">Horror</button>
+                    <button type="button" data-value="Mahou Shoujo">Mahou Shoujo</button>
+                    <button type="button" data-value="Mecha">Mecha</button>
+                    <button type="button" data-value="Music">Music</button>
+                    <button type="button" data-value="Mystery">Mystery</button>
+                    <button type="button" data-value="Psychological">Psychological</button>
+                    <button type="button" data-value="Romance">Romance</button>
+                    <button type="button" data-value="Sci-Fi">Sci-Fi</button>
+                    <button type="button" data-value="Slice of Life">Slice of Life</button>
+                    <button type="button" data-value="Sports">Sports</button>
+                    <button type="button" data-value="Supernatural">Supernatural</button>
+                    <button type="button" data-value="Thriller">Thriller</button>
+                </div>
+            </div>
+            <input type="hidden" id="genre" name="genre">
+
+            <hr>
+            <h3 class="select-text text-center"><span>ANILIST</span> INFO (OPTIONAL)
+                <br><small>for personalized <span>results</span></small>
+            </h3>
+            <hr>
+
             <label for="username">Username</label><br>
             <input type="text" placeholder="e.g., Chaengie" id="username" name="username"><br>
             <label for="list">List</label><br>
-            <div>
+            <div class="list-options">
                 <input type="checkbox" id="all" name="list" value="1">
                 <label for="all">All</label>
                 <input type="checkbox" id="watching" name="list" value="2">
@@ -50,6 +92,8 @@
                 <input type="checkbox" id="planning" name="list" value="6">
                 <label for="planning">Planning</label>
             </div>
+            
+            <p class="error-text" id="error">You need to select a game mode.</p>
             <div class="generate-button">
                 <button type="submit" value="Submit"><span>Gene</span>rate</button>
             </div>

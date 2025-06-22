@@ -5,11 +5,35 @@ document.querySelector("#navbar img").addEventListener("click", () =>{
     location.reload();
 });
 
-/* Formulaire de génération */
+// Toggle pour sélectionner un genre
+const toggle = document.querySelector(".genre-toggle");
+const options = document.querySelector(".genre-options");
+const hiddenInput = document.querySelector("#genre");
+
+let isOpen = false;
+
+toggle.addEventListener("click", () =>{
+	// On inverse l'état du toggle (ouvert / fermé)
+	isOpen = !isOpen;
+
+	options.style.display = isOpen ? "flex" : "none";
+});
+options.querySelectorAll("button").forEach(button =>{
+	button.addEventListener("click", () =>{
+		const value = button.getAttribute("data-value");
+		toggle.querySelector(".genre-label").textContent = value || "Any";
+		hiddenInput.value = value;
+
+		options.style.display = "none";
+		isOpen = false;
+	});
+});
+
+// Formulaire de génération
 document.querySelector("form").addEventListener("submit", async (event) =>{
     event.preventDefault(); // Empêche la soumission par défaut du formulaire
 
-    const selectedMode = document.querySelector(`input[name="mode"]:checked`).value;
+    const selectedMode = document.querySelector(`input[name="mode"]:checked`)?.value || "";
     const inputValue = document.querySelector("#username").value;
 
     const checkedStatusInputs = document.querySelectorAll(`input[name="list"]:checked`);
@@ -24,7 +48,11 @@ document.querySelector("form").addEventListener("submit", async (event) =>{
             return response.json();
         })
         .then(data =>{
-            console.log(data);
+            if(data.success === false){
+                document.querySelector("#error").style.display = "block";
+            } else{
+                console.log(data);
+            }
         })
         .catch(error =>{
             console.error(`Une erreur est survenue lors de la génération des animes: ${error}`);

@@ -22,6 +22,12 @@ app.post('/getListOfRandomAnimes', async (req, res) => {
         const username = req.body.username;
         const statuses = req.body.statuses;
 
+        // Si l'utilisateur n'a pas sélectionné un mode de jeu
+        if(mode !== "1" && mode !== "2"){
+            res.json({ success: false, errorType: "missingMode" });
+            return;
+        }
+
         const statusesMap = {
             "1": "ALL",
             "2": "CURRENT",
