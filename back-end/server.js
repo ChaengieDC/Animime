@@ -19,6 +19,7 @@ app.use('/img', express.static(path.join(__dirname, '../data/img')));
 app.post('/getListOfRandomAnimes', async (req, res) => {
     try{
         const mode = req.body.mode;
+        const genre = req.body.genre;
         const username = req.body.username;
         const statuses = req.body.statuses;
 
@@ -38,7 +39,7 @@ app.post('/getListOfRandomAnimes', async (req, res) => {
         };
         // Map les statuts en AniList MediaListStatus, sauf pour "ALL"
         let mappedStatuses = [];
-        if(statuses.includes("1")){
+        if(statuses.length === 0 || statuses.includes("1")){
             mappedStatuses = null;
         } else{
             mappedStatuses = statuses.map(s => statusesMap[s]).filter(Boolean);
@@ -59,6 +60,7 @@ app.post('/getListOfRandomAnimes', async (req, res) => {
                                     coverImage{
                                         large
                                     }
+                                    genres
                                     characters(perPage: 25){
                                         nodes{
                                             id
@@ -96,8 +98,15 @@ app.post('/getListOfRandomAnimes', async (req, res) => {
             // Et on filtre pour garder uniquement TV et MOVIE
             const filteredEntries = entries.filter(media => media.format === "TV" || media.format === "MOVIE");
 
+            // Selon le genre si selectionné
+            if(genre === ""){
+                genreFiltered = filteredEntries; // Aucun filtre si "Any"
+            } else{
+                genreFiltered = filteredEntries.filter(media => media.genres?.includes(genre));
+            }
+
             // Puis on randomize la liste
-            const shuffledAnimes = filteredEntries.sort(() => Math.random() - 0.5);
+            const shuffledAnimes = genreFiltered.sort(() => Math.random() - 0.5);
 
             // Mode ANIMES
             if(mode === "1"){
@@ -121,7 +130,7 @@ app.post('/getListOfRandomAnimes', async (req, res) => {
                 const queries = pages.map(p =>
                     `query{
                         Page(perPage: 50, page: ${p}){
-                            media(type: ANIME, format_in: [TV, MOVIE], sort: POPULARITY_DESC){
+                            media(type: ANIME, format_in: [TV, MOVIE], ${genre !== "" ? `genre_in: ["${genre}"],` : ""} sort: POPULARITY_DESC){
                                 id
                                 format
                                 title{
@@ -132,6 +141,7 @@ app.post('/getListOfRandomAnimes', async (req, res) => {
                                     large
                                 }
                                 popularity
+                                genres
                             }
                         }
                     }`

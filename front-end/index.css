@@ -5,6 +5,7 @@
 /* Background de la page */
 body{
     background-color: #fcfcfc !important;
+    user-select: none;
 }
 
 #navbar img{
@@ -221,6 +222,7 @@ form hr:nth-of-type(2){
 
 .list-options{
     line-height: 1.1;
+    margin-bottom: 3vh;
 }
 input[type="checkbox"]{
     accent-color: #383838;
@@ -253,7 +255,6 @@ input[type="checkbox"] + label:not(:last-child){
 .generate-button{
     display: flex;
     justify-content: center;
-    margin-top: 3vh;
     margin-bottom: 10vh;
 }
 
