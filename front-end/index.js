@@ -125,8 +125,8 @@ function displayResult(result, modeValue){
         // Mode anime
         img.src = result.coverImage?.large || "";
         img.alt = result.title?.romaji;
-        img.width = "230";
-        img.height = "345";
+        img.width = "280";
+        img.height = "396";
 
         mainTitle.textContent = result.title?.romaji.toUpperCase();
         subtitle.textContent = result.title?.english;
@@ -134,8 +134,8 @@ function displayResult(result, modeValue){
         // Mode personnage
         img.src = result.image?.large || "";
         img.alt = result.name?.full;
-        img.width = "230";
-        img.height = "345";
+        img.width = "280";
+        img.height = "396";
 
         mainTitle.textContent = result.name?.full.toUpperCase();
     }
