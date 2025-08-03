@@ -66,6 +66,9 @@ document.addEventListener("DOMContentLoaded", () =>{
 });
 
 // Formulaire de génération
+let resultsList = [];
+let currentIndex = 0;
+
 document.querySelector("form").addEventListener("submit", async (event) =>{
     event.preventDefault(); // Empêche la soumission par défaut du formulaire
 
@@ -87,11 +90,65 @@ document.querySelector("form").addEventListener("submit", async (event) =>{
         .then(data =>{
             if(data.success === false){
                 document.querySelector("#error").style.display = "block";
-            } else{
-                console.log(data);
+                return;
             }
+
+            resultsList = data;
+            currentIndex = 0;
+            const modeValue = document.querySelector(`input[name="mode"]:checked`)?.value;
+
+            document.body.classList.add("results-page");
+            document.querySelector("#navbar").classList.add("results-page");
+
+            // Cacher tout sauf la navbar et les résultats
+            document.querySelectorAll("body > *:not(#navbar)").forEach(el =>{
+                if(!el.classList.contains("results")){
+                    el.style.display = "none";
+                }
+            });
+
+            displayResult(resultsList[currentIndex], modeValue);
+
+            document.querySelector(".results").style.display = "flex";
         })
         .catch(error =>{
             console.error(`Une erreur est survenue lors de la génération des animes: ${error}`);
         });
+});
+
+function displayResult(result, modeValue){
+    const img = document.querySelector(".results img");
+    const mainTitle = document.querySelector(".main-title");
+    const subtitle = document.querySelector(".subtitle");
+
+    if(modeValue === "1"){
+        // Mode anime
+        img.src = result.coverImage?.large || "";
+        img.alt = result.title?.romaji;
+        img.width = "230";
+        img.height = "345";
+
+        mainTitle.textContent = result.title?.romaji.toUpperCase();
+        subtitle.textContent = result.title?.english;
+    } else if(modeValue === "2"){
+        // Mode personnage
+        img.src = result.image?.large || "";
+        img.alt = result.name?.full;
+        img.width = "230";
+        img.height = "345";
+
+        mainTitle.textContent = result.name?.full.toUpperCase();
+    }
+}
+
+// Bouton pour afficher le résultat suivant
+document.querySelector(".next-btn").addEventListener("click", () =>{
+    if(!resultsList.length){
+        return;
+    }
+
+    currentIndex = (currentIndex + 1) % resultsList.length;
+    const modeValue = document.querySelector(`input[name="mode"]:checked`)?.value;
+
+    displayResult(resultsList[currentIndex], modeValue);
 });

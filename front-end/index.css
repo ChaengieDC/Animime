@@ -7,7 +7,13 @@ body{
     background-color: #fcfcfc !important;
     user-select: none;
 }
+body.results-page{
+    background-color: coral !important;
+}
 
+#navbar.results-page{
+    background-color: #fcfcfc;
+}
 #navbar img{
     cursor: pointer;
 }
@@ -279,4 +285,62 @@ input[type="checkbox"] + label:not(:last-child){
 }
 .generate-button button:hover span{
     color: #ffffff;
+}
+
+/* Affichage des résultats */
+.results{
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    width: 100vw;
+    height: calc(100vh - 84.66px);
+}
+
+.img-wrapper{
+    position: relative;
+    margin-bottom: 1rem;
+}
+.img-wrapper img{
+    border: 10px solid white;
+    border-radius: 10px;
+}
+
+.next-btn{
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 40%;
+    transform: translateY(-50%) rotate(-90deg);
+}
+.next-btn span{
+    display: block;
+    border-right: 5px solid white;
+    border-bottom: 5px solid white;
+    width: 1.5vw;
+    height: 1.5vw;
+    transform: rotate(45deg);
+    animation: animate 2s infinite;
+    margin: -10px;
+}
+.next-btn span:nth-child(2){
+    animation-delay: -0.2s;
+}
+.next-btn span:nth-child(3){
+    animation-delay: -0.4s;
+}
+@keyframes animate{
+    0%{ opacity: 0; transform: rotate(45deg) translate(-20px, -20px); }
+    50%{ opacity: 1; }
+    100%{ opacity: 0; transform: rotate(45deg) translate(20px, 20px); }
+}
+
+.results h3{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    line-height: 0.8;
+    margin: 0;
+}
+.results h3 small{
+    font-style: italic;
+    font-size: 17px;
 }
